@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 /* 빌드방법
@@ -32,5 +33,36 @@ public class HelloController {
         return "hello-template";
     }
 
+    /* @ResponseBody Attribute 추가
+    * 메소드의 반환값이 HTTP 응답 본문에 직접 작성되어야 함을 나타냅니다.
+    * 즉, 반환된 값은 뷰 리졸버(View Resolver)를 통해 뷰 이름으로 해석되지 않고, 클라이언트에게 직접 반환됩니다.
+    * */
+    @GetMapping("hello-string")
+    @ResponseBody
+    public String helloString(@RequestParam("name") String name){
+      return "hello " + name;
+    }
 
+    /* API 방식으로 리턴하는 Method
+    * Hello 객체를 사용해서 return
+    * Json 형식
+     */
+    @GetMapping("hello-api")
+    @ResponseBody
+    public Hello helloApi(@RequestParam("name") String name){
+        Hello hello = new Hello();
+        hello.setName(name);
+        return hello;
+    }
+
+    public class Hello {
+        private String name;
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
 }
