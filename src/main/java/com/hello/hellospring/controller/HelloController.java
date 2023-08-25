@@ -3,6 +3,7 @@ package com.hello.hellospring.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 /* 빌드방법
@@ -21,7 +22,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HelloController {
     @GetMapping("hello")
     public String hello(Model model) {
-        model.addAttribute("data", "4141!!");
+        model.addAttribute("data", "이건민!!");
         return "hello";
     }
+
+    @GetMapping("hello-mvc")
+    public String helloMvc(@RequestParam(value = "name")  String testName, Model model){
+        model.addAttribute("name", testName);
+        return "hello-template";
+    }
+
+
 }
