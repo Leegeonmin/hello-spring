@@ -6,6 +6,10 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
+
+/**
+ * AOP를 사용하기위한 조건 @Aspect, @Component, @Around
+ */
 @Aspect
 @Component
 public class TimeTraceAop {
